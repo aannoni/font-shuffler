@@ -1,85 +1,94 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { ref, computed } from 'vue'
+
+// 1. This is where your data structure (Step 1) will go
+const fontSets = [
+  {
+    id: 1,
+    fontFamily: "'Playfair Display', serif",
+    name: "Classic Serif"
+  },
+  {
+    id: 2,
+    fontFamily: "'Montserrat', sans-serif",
+    name: "Modern Sans"
+  }
+]
+
+const currentIndex = ref(0)
+const currentSet = computed(() => fontSets[currentIndex.value])
+
+const shuffle = () => {
+  currentIndex.value = (currentIndex.value + 1) % fontSets.length
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div class="app-container">
+    <header>
+      <h1 class="logo">Font <span class="red">Shuffler</span></h1>
+    </header>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <main>
+      <button @click="shuffle" class="shuffle-btn">SHUFFLE FONT</button>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+      <div class="preview-card">
+        <div class="guide-box">
+           <h2 :style="{ fontFamily: currentSet.fontFamily }">
+             CONTEMPORARY DANCE EVENING
+           </h2>
+           <p>Choreography exploring rhythm, tension and release</p>
+        </div>
+      </div>
+    </main>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+<style>
+/* Basic reset to help match your white/minimalist design */
+body {
+  margin: 0;
+  background-color: #f8faff; /* Light blueish tint from your image */
+  font-family: sans-serif;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
 }
 
 .logo {
-  display: block;
-  margin: 0 auto 2rem;
+  color: #333;
+  font-size: 2rem;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
+.red {
+  color: #ff3b30; /* Red from your logo */
+}
+
+.shuffle-btn {
+  background: transparent;
+  border: 1px solid #ff3b30;
+  color: #ff3b30;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 2rem 0;
+}
+
+.preview-card {
+  width: 80%;
+  max-width: 800px;
+  border: 0.5px solid #ccc; /* The thin guide lines */
+  padding: 100px 50px;
   text-align: center;
-  margin-top: 2rem;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+h2 {
+  font-size: 4rem;
+  color: #0047ff; /* Blue from your image */
+  margin: 0;
 }
 </style>
