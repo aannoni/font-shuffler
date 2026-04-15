@@ -36,13 +36,14 @@ const shuffle = () => {
 
   <main class="app-main">
     <button @click="shuffle" class="shuffle-button">SHUFFLE FONT</button>
+    
     <div class="font-container">
       <h1 :style="currentCombo.h1Styles">
-        CONTEMPORARY DANCE EVENING
+        {{ currentCombo.h1Text }}
       </h1>
       
       <h2 :style="currentCombo.h2Styles">
-        Choreography exploring rhythm, tension and release
+        {{ currentCombo.h2Text }}
       </h2>
     </div>
   </main>
@@ -60,17 +61,18 @@ const shuffle = () => {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: calc(100vh - 130px);
     flex-direction: column;
+    row-gap: 12px;
   }
 
   .font-container {
-    width: 90%;
-    max-width: 800px;
+    width: 840px;
+    height: 420px;
     border: 1px solid #D1D9E6; /* The thin guide lines */
-    padding: 80px 40px;
-    text-align: center;
+    padding: 0px 30px;
     background-color: white;
+    margin-bottom: 50px;
   }
 
   .shuffle-button {
