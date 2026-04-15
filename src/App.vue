@@ -1,28 +1,32 @@
 <script setup>
-  import { ref, computed } from 'vue'
+import { ref, computed } from 'vue'
+import { fontCombinations } from '@/data/fontCombinations'
 
-  const fontCombinations = [
-    {
-      id: 1,
-      h1Font: "'Playfair Display', serif",
-      h2Font: "'Rethink Sans', sans-serif",
-      color: "#0047FF"
-    },
-    {
-      id: 2,
-      h1Font: "'Montserrat', sans-serif",
-      h2Font: "'Lora', serif",
-      color: "#FF3B30"
-    },
-  ]
+const randomPick = ref(0)
+const currentCombo = computed(() => fontCombinations[randomPick.value])
 
-  const randomPick = ref(0)
+// The logic to inject the font into the HTML head
+const loadGoogleFont = (fontName) => {
+  const formattedName = fontName.replace(/\s+/g, '+');
+  const linkId = `google-font-${formattedName}`;
 
-  const currentCombo = computed(() => fontCombinations[randomPick.value])
-
-  const shuffle = () => {
-  randomPick.value = (randomPick.value + 1) % fontCombinations.length
+  // If we haven't added this font to the page yet, add it!
+  if (!document.getElementById(linkId)) {
+    const link = document.createElement('link');
+    link.id = linkId;
+    link.rel = 'stylesheet';
+    link.href = `https://fonts.googleapis.com/css2?family=${formattedName}:wght@400;700&display=swap`;
+    document.head.appendChild(link);
   }
+}
+
+const shuffle = () => {
+  randomPick.value = (randomPick.value + 1) % fontCombinations.length;
+  
+  // Every time we shuffle, tell the browser to load the new fonts
+  loadGoogleFont(currentCombo.value.h1Styles.fontFamily);
+  loadGoogleFont(currentCombo.value.h2Styles.fontFamily);
+}
 </script>
 
 <template>
@@ -33,11 +37,15 @@
   <main class="app-main">
     <button @click="shuffle" class="shuffle-button">SHUFFLE FONT</button>
     <div class="font-container">
-      <h1 :style="{ fontFamily: currentCombo.h1Font, color: currentCombo.color }">CONTEMPORARY DANCE EVENING</h1>
-      <h2 :style="{ fontFamily: currentCombo.h2Font, color: currentCombo.color }">Choreography exploring rhythm, tension and release</h2>
+      <h1 :style="currentCombo.h1Styles">
+        CONTEMPORARY DANCE EVENING
+      </h1>
+      
+      <h2 :style="currentCombo.h2Styles">
+        Choreography exploring rhythm, tension and release
+      </h2>
     </div>
   </main>
-  
 </template>
 
 <style>
