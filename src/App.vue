@@ -5,17 +5,15 @@ import { fontCombinations } from '@/data/fontCombinations'
 const randomPick = ref(0)
 const currentCombo = computed(() => fontCombinations[randomPick.value])
 
-// The logic to inject the font into the HTML head
 const loadGoogleFont = (fontName) => {
   const formattedName = fontName.replace(/\s+/g, '+');
   const linkId = `google-font-${formattedName}`;
-
-  // If we haven't added this font to the page yet, add it!
   if (!document.getElementById(linkId)) {
     const link = document.createElement('link');
     link.id = linkId;
     link.rel = 'stylesheet';
-    link.href = `https://fonts.googleapis.com/css2?family=${formattedName}:wght@400;700&display=swap`;
+    // Added italics (ital@0;1) and specific weights
+    link.href = `https://fonts.googleapis.com/css2?family=${formattedName}:ital,wght@0,400;1,400&display=swap`;
     document.head.appendChild(link);
   }
 }
@@ -38,11 +36,11 @@ const shuffle = () => {
     <button @click="shuffle" class="shuffle-button">SHUFFLE FONT</button>
     
     <div class="font-container">
-      <h1 :style="currentCombo.h1Styles">
+      <h1 :style="{ ...currentCombo.h1Styles, fontFamily: `'${currentCombo.h1Styles.fontFamily}', serif` }">
         {{ currentCombo.h1Text }}
       </h1>
       
-      <h2 :style="currentCombo.h2Styles">
+      <h2 :style="{ ...currentCombo.h2Styles, fontFamily: `'${currentCombo.h2Styles.fontFamily}', sans-serif` }">
         {{ currentCombo.h2Text }}
       </h2>
     </div>
@@ -70,7 +68,7 @@ const shuffle = () => {
     width: 840px;
     height: 420px;
     border: 1px solid #D1D9E6; /* The thin guide lines */
-    padding: 0px 30px;
+    padding: 30px 30px;
     background-color: white;
     margin-bottom: 50px;
   }

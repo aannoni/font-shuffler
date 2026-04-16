@@ -2,15 +2,17 @@
 export const fontCombinations = [
   {
     id: 1,
-    h1Text: "CONTEMPORARY DANCE", // Specific text for Combo 1
+    h1Text: "CONTEMPORARY DANCE EVENING",
     h2Text: "A study of motion and light",
     h1Styles: {
-      fontFamily: "'Instrument Serif', serif",
-      fontSize: '90px',
+      fontFamily: "Instrument Serif", // No quotes or fallbacks here
+      fontSize: '80px',
+      lineHeight: '90%',
+      fontWeight: '400',
       color: '#0B44FF'
     },
     h2Styles: {
-       fontFamily: "'Rethink Sans', sans-serif",
+       fontFamily: "Rethink Sans",
        fontSize: '20px'
     }
   },
