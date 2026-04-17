@@ -70,4 +70,27 @@ export const fontCombinations = [
       letterSpacing: '-2px'
     },
   },
+  {
+  id: 4,
+  h1Text: "RUN THE NIGHT", // Different text for Combo 2
+  h2Text: "AFTER HOURS RUN CLUB",
+  h1Styles: {
+    fontFamily: "Workbench",
+    fontSize: '30px',
+    color: '#D5FF02',
+    lineHeight: '95%',
+    textAlign: 'center',
+    fontWeight: '400',
+    marginBottom: '40px',
+    marginTop: '50px',
+  },
+  h2Styles: {
+    fontFamily: "Workbench",
+    fontSize: '90px',
+    color: '#D5FF02',
+    lineHeight: '110%',
+    textAlign: 'center',
+    fontWeight: '400',
+  },
+},
 ]

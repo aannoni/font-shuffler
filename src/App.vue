@@ -12,7 +12,6 @@ onMounted(() => {
   })
 })
 
-
 const loadGoogleFont = (fontName) => {
   const formattedName = fontName.replace(/\s+/g, '+');
   const linkId = `google-font-${formattedName}`;
