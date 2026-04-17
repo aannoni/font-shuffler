@@ -6,9 +6,12 @@ const randomPick = ref(0)
 const currentCombo = computed(() => fontCombinations[randomPick.value])
 
 onMounted(() => {
-  loadGoogleFont(currentCombo.value.h1Styles.fontFamily);
-  loadGoogleFont(currentCombo.value.h2Styles.fontFamily);
+  fontCombinations.forEach(combo => {
+    loadGoogleFont(combo.h1Styles.fontFamily)
+    loadGoogleFont(combo.h2Styles.fontFamily)
+  })
 })
+
 
 const loadGoogleFont = (fontName) => {
   const formattedName = fontName.replace(/\s+/g, '+');
@@ -21,7 +24,6 @@ const loadGoogleFont = (fontName) => {
     document.head.appendChild(link);
   }
 }
-
 const shuffle = () => {
   randomPick.value = (randomPick.value + 1) % fontCombinations.length;
   loadGoogleFont(currentCombo.value.h1Styles.fontFamily);
