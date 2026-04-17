@@ -1,9 +1,14 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { fontCombinations } from '@/data/fontCombinations'
 
 const randomPick = ref(0)
 const currentCombo = computed(() => fontCombinations[randomPick.value])
+
+onMounted(() => {
+  loadGoogleFont(currentCombo.value.h1Styles.fontFamily);
+  loadGoogleFont(currentCombo.value.h2Styles.fontFamily);
+})
 
 const loadGoogleFont = (fontName) => {
   const formattedName = fontName.replace(/\s+/g, '+');
@@ -12,16 +17,13 @@ const loadGoogleFont = (fontName) => {
     const link = document.createElement('link');
     link.id = linkId;
     link.rel = 'stylesheet';
-    // Added italics (ital@0;1) and specific weights
-    link.href = `https://fonts.googleapis.com/css2?family=${formattedName}:ital,wght@0,400;1,400&display=swap`;
+    link.href = `https://fonts.googleapis.com/css2?family=${formattedName}:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap`;
     document.head.appendChild(link);
   }
 }
 
 const shuffle = () => {
   randomPick.value = (randomPick.value + 1) % fontCombinations.length;
-  
-  // Every time we shuffle, tell the browser to load the new fonts
   loadGoogleFont(currentCombo.value.h1Styles.fontFamily);
   loadGoogleFont(currentCombo.value.h2Styles.fontFamily);
 }
@@ -65,7 +67,7 @@ const shuffle = () => {
   }
 
   .font-container {
-    width: 840px;
+    width: 720px;
     height: 420px;
     border: 1px solid #D1D9E6; /* The thin guide lines */
     padding: 30px 30px;
