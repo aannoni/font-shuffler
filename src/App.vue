@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { fontCombinations } from '@/data/fontCombinations'
 import Particles from './components/Particles.vue'
+import AppButton from './components/AppButton.vue'
 
 const randomPick = ref(0)
 const currentCombo = computed(() => fontCombinations[randomPick.value])
@@ -34,12 +35,11 @@ const shuffle = () => {
 <template>
   <Particles class="background-particles"></Particles>
   <header class="app-header">
-    <img src="@/assets/font-shuffler.svg" alt="Font shuffler logo" class="font-shuffler-logo">
+    <img src="@/assets/FontVerse.svg" alt="Font shuffler logo" class="font-shuffler-logo">
   </header>
 
   <main class="app-main">
-    <button @click="shuffle" class="shuffle-button">SHUFFLE FONT</button>
-    
+    <AppButton @click="shuffle">Shuffle H1</AppButton>
     <div class="font-container">
       <h1 :style="{ ...currentCombo.h1Styles, fontFamily: `'${currentCombo.h1Styles.fontFamily}', serif` }">
         {{ currentCombo.h1Text }}
@@ -54,13 +54,11 @@ const shuffle = () => {
 
 <style>
   .app-header {
-    /* background-color: aquamarine; */
     display: flex;
     justify-content: center;
   }
 
   .app-main {
-    /* background-color: darkkhaki; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,30 +73,6 @@ const shuffle = () => {
     border: 1px solid #D1D9E6; /* The thin guide lines */
     padding: 30px 30px;
     margin-bottom: 50px;
-  }
-
-  .shuffle-button {
-    display: inline-flex;
-    padding: 6px 14px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
-    border: 2px solid #F00;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 100%;
-    letter-spacing: -1px;
-    color: #F00;
-    background-color: #F4F8FF;
-  }
-
-  .shuffle-button:hover {
-    cursor: pointer;
-  }
-
-  .shuffle-button:active {
-    box-shadow: none;
-    transform: translate(3px, 3px);
   }
 
   .background-particles {

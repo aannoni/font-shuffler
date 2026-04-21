@@ -62,9 +62,9 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: #020a17; /* Your specific light blue */
+  background-color: #000211;
   line-height: 1.6;
-  font-family: 'Rethink Sans', sans-serif; /* Your new favorite! */
+  font-family: 'Orbit';
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
