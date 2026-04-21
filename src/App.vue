@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { fontCombinations } from '@/data/fontCombinations'
+import Particles from './components/Particles.vue'
 
 const randomPick = ref(0)
 const currentCombo = computed(() => fontCombinations[randomPick.value])
@@ -31,6 +32,7 @@ const shuffle = () => {
 </script>
 
 <template>
+  <Particles class="background-particles"></Particles>
   <header class="app-header">
     <img src="@/assets/font-shuffler.svg" alt="Font shuffler logo" class="font-shuffler-logo">
   </header>
@@ -72,7 +74,6 @@ const shuffle = () => {
     height: 420px;
     border: 1px solid #D1D9E6; /* The thin guide lines */
     padding: 30px 30px;
-    background-color: white;
     margin-bottom: 50px;
   }
 
@@ -98,5 +99,15 @@ const shuffle = () => {
   .shuffle-button:active {
     box-shadow: none;
     transform: translate(3px, 3px);
-}
+  }
+
+  .background-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
 </style>

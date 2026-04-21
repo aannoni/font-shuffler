@@ -9,7 +9,7 @@ export const fontCombinations = [
       fontSize: '80px',
       lineHeight: '90%',
       fontWeight: '400',
-      color: '#0B44FF',
+      color: 'white',
       textAlign: 'center',
       marginBottom: '20px',
       marginTop: '70px'
@@ -18,7 +18,7 @@ export const fontCombinations = [
       fontFamily: "Instrument Sans",
       fontSize: '25px',
       textAlign: 'center',
-      color: '#0B44FF',
+      color: 'white',
       lineHeight: '110%',
       fontWeight: '100'
     },
@@ -30,7 +30,7 @@ export const fontCombinations = [
     h1Styles: {
       fontFamily: "Rethink Sans",
       fontSize: '85px',
-      color: '#FF3B30',
+      color: 'white',
       lineHeight: '95%',
       fontWeight: '400',
       textAlign: 'left'
@@ -38,7 +38,7 @@ export const fontCombinations = [
     h2Styles: {
       fontFamily: "Spectral",
       fontSize: '85px',
-      color: '#FF3B30',
+      color: 'white',
       lineHeight: '95%',
       fontWeight: '300',
       textAlign: 'left',
@@ -52,7 +52,7 @@ export const fontCombinations = [
     h1Styles: {
       fontFamily: "Lexend Peta",
       fontSize: '20px',
-      color: '#7B2D2D',
+      color: 'white',
       lineHeight: '120%',
       textAlign: 'center',
       letterSpacing: '-1px',
@@ -63,7 +63,7 @@ export const fontCombinations = [
     h2Styles: {
       fontFamily: "Newsreader",
       fontSize: '90px',
-      color: '#7B2D2D',
+      color: 'white',
       lineHeight: '90%',
       fontWeight: '200',
       textAlign: 'center',
@@ -77,7 +77,7 @@ export const fontCombinations = [
   h1Styles: {
     fontFamily: "Workbench",
     fontSize: '30px',
-    color: '#8e00a1',
+    color: 'white',
     lineHeight: '95%',
     textAlign: 'center',
     fontWeight: '400',
@@ -87,7 +87,7 @@ export const fontCombinations = [
   h2Styles: {
     fontFamily: "Workbench",
     fontSize: '90px',
-    color: '#8e00a1',
+    color: 'white',
     lineHeight: '110%',
     textAlign: 'center',
     fontWeight: '400',

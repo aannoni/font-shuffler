@@ -62,8 +62,7 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: #F4F8FF; /* Your specific light blue */
-  color: #333;
+  background-color: #020a17; /* Your specific light blue */
   line-height: 1.6;
   font-family: 'Rethink Sans', sans-serif; /* Your new favorite! */
   text-rendering: optimizeLegibility;
