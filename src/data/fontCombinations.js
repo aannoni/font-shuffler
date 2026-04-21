@@ -77,7 +77,7 @@ export const fontCombinations = [
   h1Styles: {
     fontFamily: "Workbench",
     fontSize: '30px',
-    color: '#D5FF02',
+    color: '#8e00a1',
     lineHeight: '95%',
     textAlign: 'center',
     fontWeight: '400',
@@ -87,7 +87,7 @@ export const fontCombinations = [
   h2Styles: {
     fontFamily: "Workbench",
     fontSize: '90px',
-    color: '#D5FF02',
+    color: '#8e00a1',
     lineHeight: '110%',
     textAlign: 'center',
     fontWeight: '400',
