@@ -1,53 +1,25 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { fontCombinations } from '@/data/fontCombinations'
 import Particles from './components/Particles.vue'
 import AppButton from './components/AppButton.vue'
 
-const randomPick = ref(0)
-const currentCombo = computed(() => fontCombinations[randomPick.value])
-
-onMounted(() => {
-  fontCombinations.forEach(combo => {
-    loadGoogleFont(combo.h1Styles.fontFamily)
-    loadGoogleFont(combo.h2Styles.fontFamily)
-  })
+onMounted(async () => {
+  console.log('wow this is working')
 })
-
-const loadGoogleFont = (fontName) => {
-  const formattedName = fontName.replace(/\s+/g, '+');
-  const linkId = `google-font-${formattedName}`;
-  if (!document.getElementById(linkId)) {
-    const link = document.createElement('link');
-    link.id = linkId;
-    link.rel = 'stylesheet';
-    link.href = `https://fonts.googleapis.com/css2?family=${formattedName}:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap`;
-    document.head.appendChild(link);
-  }
-}
-const shuffle = () => {
-  randomPick.value = (randomPick.value + 1) % fontCombinations.length;
-  loadGoogleFont(currentCombo.value.h1Styles.fontFamily);
-  loadGoogleFont(currentCombo.value.h2Styles.fontFamily);
-}
 </script>
 
 <template>
   <Particles class="background-particles"></Particles>
   <header class="app-header">
-    <img src="@/assets/FontVerse.svg" alt="Font shuffler logo" class="font-shuffler-logo">
+    <img src="@/assets/FontVerse.svg" alt="Fontverse logo" class="font-shuffler-logo">
   </header>
 
   <main class="app-main">
-    <AppButton @click="shuffle">Shuffle H1</AppButton>
+    <AppButton>Shuffle H1</AppButton>
     <div class="font-container">
-      <h1 :style="{ ...currentCombo.h1Styles, fontFamily: `'${currentCombo.h1Styles.fontFamily}', serif` }">
-        {{ currentCombo.h1Text }}
-      </h1>
-      
-      <h2 :style="{ ...currentCombo.h2Styles, fontFamily: `'${currentCombo.h2Styles.fontFamily}', sans-serif` }">
-        {{ currentCombo.h2Text }}
-      </h2>
+      <h1></h1>
+      <h2></h2>
     </div>
   </main>
 </template>
