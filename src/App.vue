@@ -7,6 +7,8 @@ import AppButton from './components/AppButton.vue'
 onMounted(async () => {
   console.log('wow this is working')
 })
+
+
 </script>
 
 <template>
