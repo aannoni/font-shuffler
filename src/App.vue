@@ -12,37 +12,42 @@ onMounted(async () => {
 const h1Font = ref('')
 const h2Font = ref('')
 
-const lastChange = ref(null)
+const history = ref([])
 
 const shuffleFont = async (fontRef) => {
   const fonts = await fetchGoogleFonts()
   const randomFont = fonts[Math.floor(Math.random() * fonts.length)]
   const link = document.createElement('link')
-  link.href = `https://fonts.googleapis.com/css2?family=${randomFont.replace(/ /g, '+')}&display=swap`
+  link.href = `https://fonts.googleapis.com/css2?family=${randomFont.replace(/ /g, '+')}&display=block`
   link.rel = 'stylesheet'
-  document.head.appendChild(link)
+  await new Promise(resolve => {
+    link.onload = resolve
+    document.head.appendChild(link)
+  })
+  await document.fonts.load(`1em "${randomFont}"`)
   fontRef.value = randomFont
 }
 
 const shuffleH1 = () => {
-  lastChange.value = { target: 'h1', previousFont: h1Font.value }
+  history.value.push({ target: 'h1', previousFont: h1Font.value })
+  if (history.value.length > 3) history.value.shift()
   shuffleFont(h1Font)
 }
 
 const shuffleH2 = () => {
-  lastChange.value = { target: 'h2', previousFont: h2Font.value }
+  history.value.push({ target: 'h2', previousFont: h2Font.value })
+  if (history.value.length > 3) history.value.shift()
   shuffleFont(h2Font)
 }
 
 const goBack = () => {
-  if (lastChange.value.target === 'h1') {
-    h1Font.value = lastChange.value.previousFont
+  const last = history.value.pop()
+  if (last.target === 'h1') {
+    h1Font.value = last.previousFont
   } else {
-    h2Font.value = lastChange.value.previousFont
+    h2Font.value = last.previousFont
   }
-  lastChange.value = null
 }
-
 
 </script>
 
@@ -56,7 +61,7 @@ const goBack = () => {
     <div class="button-group">
       <AppButton @click="shuffleH1">Shuffle H1</AppButton>
       <AppButton @click="shuffleH2">Shuffle H2</AppButton>
-      <AppButton @click="goBack" :disabled="lastChange === null">Go back</AppButton>
+      <AppButton @click="goBack" :disabled="history.length === 0">Reverse</AppButton>
     </div>
     <div class="font-container">
       <h1 :style="{ fontFamily: h1Font }">Do you like time?</h1>

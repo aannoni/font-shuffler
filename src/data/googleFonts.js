@@ -2,7 +2,7 @@ const apiKey = import.meta.env.VITE_GOOGLE_FONTS_API_KEY
 
 export const fetchGoogleFonts = async () => {
   try {
-    const response = await fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}`)
+    const response = await fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}&sort=trending`)
     const data = await response.json()
     return data.items.map(font => font.family)
   } catch (error) {
