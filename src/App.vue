@@ -12,6 +12,8 @@ onMounted(async () => {
 const h1Font = ref('')
 const h2Font = ref('')
 
+const lastChange = ref(null)
+
 const shuffleFont = async (fontRef) => {
   const fonts = await fetchGoogleFonts()
   const randomFont = fonts[Math.floor(Math.random() * fonts.length)]
@@ -22,8 +24,25 @@ const shuffleFont = async (fontRef) => {
   fontRef.value = randomFont
 }
 
-const shuffleH1 = () => shuffleFont(h1Font)
-const shuffleH2 = () => shuffleFont(h2Font)
+const shuffleH1 = () => {
+  lastChange.value = { target: 'h1', previousFont: h1Font.value }
+  shuffleFont(h1Font)
+}
+
+const shuffleH2 = () => {
+  lastChange.value = { target: 'h2', previousFont: h2Font.value }
+  shuffleFont(h2Font)
+}
+
+const goBack = () => {
+  if (lastChange.value.target === 'h1') {
+    h1Font.value = lastChange.value.previousFont
+  } else {
+    h2Font.value = lastChange.value.previousFont
+  }
+  lastChange.value = null
+}
+
 
 </script>
 
@@ -37,6 +56,7 @@ const shuffleH2 = () => shuffleFont(h2Font)
     <div class="button-group">
       <AppButton @click="shuffleH1">Shuffle H1</AppButton>
       <AppButton @click="shuffleH2">Shuffle H2</AppButton>
+      <AppButton @click="goBack" :disabled="lastChange === null">Go back</AppButton>
     </div>
     <div class="font-container">
       <h1 :style="{ fontFamily: h1Font }">Do you like time?</h1>
