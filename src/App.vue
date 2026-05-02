@@ -5,6 +5,10 @@ import { fetchGoogleFonts } from './data/googleFonts'
 import Particles from './components/Particles.vue'
 import AppButton from './components/AppButton.vue'
 
+onMounted(async () => {
+  console.log('wow this is working')
+})
+
 const h1Font = ref('')
 const h2Font = ref('')
 
@@ -21,9 +25,6 @@ const shuffleFont = async (fontRef) => {
 const shuffleH1 = () => shuffleFont(h1Font)
 const shuffleH2 = () => shuffleFont(h2Font)
 
-onMounted(async () => {
-  console.log('wow this is working')
-})
 </script>
 
 <template>
@@ -38,13 +39,21 @@ onMounted(async () => {
       <AppButton @click="shuffleH2">Shuffle H2</AppButton>
     </div>
     <div class="font-container">
-      <h1 :style="{ fontFamily: h1Font }">Heading One</h1>
-      <h2 :style="{ fontFamily: h2Font }">Heading Two</h2>
+      <h1 :style="{ fontFamily: h1Font }">Do you like time?</h1>
+      <h2 :style="{ fontFamily: h2Font }">Time is passing while you're reading this.</h2>
     </div>
   </main>
 </template>
 
 <style>
+  h1 {
+    font-size: 92px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
   .app-header {
     display: flex;
     justify-content: center;
@@ -60,13 +69,11 @@ onMounted(async () => {
   }
 
   .font-container {
-    width: 720px;
-    height: 420px;
-    border: 1px solid #D1D9E6; /* The thin guide lines */
-    padding: 30px 30px;
-    margin-bottom: 50px;
-      color: #ffffff;
-
+    width: 1200px;
+    height: 400px;
+    padding-top: 50px;
+    color: #ffffff;
+    text-align: center;
   }
 
   .background-particles {
