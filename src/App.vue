@@ -72,11 +72,11 @@ const goBack = () => {
 
 <style>
   h1 {
-    font-size: 92px;
+    font-size: clamp(42px, 7vw, 92px);
   }
 
   h2 {
-    font-size: 32px;
+    font-size: clamp(18px, 2.5vw, 32px);
   }
 
   .app-header {
@@ -94,7 +94,8 @@ const goBack = () => {
   }
 
   .font-container {
-    width: 1200px;
+    width: 100%;
+    max-width: 1200px;
     height: 400px;
     padding-top: 50px;
     color: #ffffff;
@@ -114,5 +115,12 @@ const goBack = () => {
     display: flex;
     column-gap: 12px;
   }
+
+  @media (max-width: 620px) {
+  .button-group {
+    flex-direction: column;
+    row-gap: 12px;
+    }
+  } 
 
 </style>
