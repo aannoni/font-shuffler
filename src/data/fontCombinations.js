@@ -4,6 +4,7 @@ export const fontCombinations = [
     id: 1,
     h1Text: "CONTEMPORARY DANCE EVENING",
     h2Text: "Choreography exploring rhythm, tension and release",
+    backgroundColor: '#372E19',
     h1Styles: {
       fontFamily: "Instrument Serif",
       fontSize: '80px',
@@ -27,6 +28,7 @@ export const fontCombinations = [
     id: 2,
     h1Text: "Brunch", // Different text for Combo 2
     h2Text: "Is Here to Stay",
+    backgroundColor: '#F2F9FF',
     h1Styles: {
       fontFamily: "Rethink Sans",
       fontSize: '85px',
@@ -49,6 +51,7 @@ export const fontCombinations = [
     id: 3,
     h1Text: "DISCOVER", // Different text for Combo 2
     h2Text: "Our New Seaside Address",
+    backgroundColor: '#c898ed',
     h1Styles: {
       fontFamily: "Lexend Peta",
       fontSize: '20px',
@@ -74,6 +77,7 @@ export const fontCombinations = [
   id: 4,
   h1Text: "RUN THE NIGHT", // Different text for Combo 2
   h2Text: "AFTER HOURS RUN CLUB",
+  backgroundColor: '#000267',
   h1Styles: {
     fontFamily: "Workbench",
     fontSize: '30px',

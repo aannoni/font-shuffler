@@ -68,9 +68,25 @@ const goBack = () => {
       <h2 :style="{ fontFamily: h2Font }">Time is passing while you're reading this.</h2>
     </div>
   </main>
+  <section>
+    <div v-for="combo in fontCombinations"
+      :key="combo.id"
+      class="combo-container"
+      v-bind:style="{ backgroundColor: combo.backgroundColor }">
+      <h1 v-bind:style="combo.h1Styles">{{ combo.h1Text }}</h1>
+      <h2 v-bind:style="combo.h2Styles">{{ combo.h2Text }}</h2>
+    </div>
+  </section>
 </template>
 
 <style>
+  .combo-container {
+    border-radius: 60px;
+    padding: 20px 40px;
+    margin: 20px auto;
+    max-width: 800px;
+  }
+
   h1 {
     font-size: clamp(42px, 7vw, 92px);
   }
