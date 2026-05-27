@@ -9,6 +9,15 @@ onMounted(async () => {
   console.log('wow this is working')
 })
 
+const fontCombos = []
+
+fontCombinations.forEach (combo => {
+  fontCombos.push(combo.h1Styles.fontFamily)
+  fontCombos.push(combo.h2Styles.fontFamily)
+})
+
+console.log(fontCombos)
+
 const h1Font = ref('')
 const h2Font = ref('')
 
