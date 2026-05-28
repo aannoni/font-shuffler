@@ -94,7 +94,7 @@ const goBack = () => {
 
 <style>
   .combo-container {
-    border-radius: 63px;
+    border-radius: 40px;
     padding: 2px;
     margin: 20px auto;
     max-width: 800px;
@@ -102,7 +102,7 @@ const goBack = () => {
   }
 
   .combo-inner {
-    border-radius: 60px;
+    border-radius: 37px;
     padding: 20px 40px;
   }
 
