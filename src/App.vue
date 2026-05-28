@@ -5,18 +5,21 @@ import { fetchGoogleFonts } from './data/googleFonts'
 import Particles from './components/Particles.vue'
 import AppButton from './components/AppButton.vue'
 
-onMounted(async () => {
-  console.log('wow this is working')
-})
-
 const fontCombos = []
 
-fontCombinations.forEach (combo => {
+fontCombinations.forEach(combo => {
   fontCombos.push(combo.h1Styles.fontFamily)
   fontCombos.push(combo.h2Styles.fontFamily)
 })
 
-console.log(fontCombos)
+onMounted(async () => {
+  fontCombos.forEach(font => {
+    const link = document.createElement('link')
+    link.href = `https://fonts.googleapis.com/css2?family=${font.replace(/ /g, '+')}&display=block`
+    link.rel = 'stylesheet'
+    document.head.appendChild(link)
+  })
+})
 
 const h1Font = ref('')
 const h2Font = ref('')
@@ -80,20 +83,27 @@ const goBack = () => {
   <section>
     <div v-for="combo in fontCombinations"
       :key="combo.id"
-      class="combo-container"
-      v-bind:style="{ backgroundColor: combo.backgroundColor }">
-      <h1 v-bind:style="combo.h1Styles">{{ combo.h1Text }}</h1>
-      <h2 v-bind:style="combo.h2Styles">{{ combo.h2Text }}</h2>
+      class="combo-container">
+      <div class="combo-inner" v-bind:style="{ backgroundColor: combo.backgroundColor }">
+        <h1 v-bind:style="combo.h1Styles">{{ combo.h1Text }}</h1>
+        <h2 v-bind:style="combo.h2Styles">{{ combo.h2Text }}</h2>
+      </div>
     </div>
   </section>
 </template>
 
 <style>
   .combo-container {
-    border-radius: 60px;
-    padding: 20px 40px;
+    border-radius: 63px;
+    padding: 2px;
     margin: 20px auto;
     max-width: 800px;
+    background: linear-gradient(115deg, #4fcf70, #fad648, #a767e5, #12bcfe, #44ce7b);
+  }
+
+  .combo-inner {
+    border-radius: 60px;
+    padding: 20px 40px;
   }
 
   h1 {
